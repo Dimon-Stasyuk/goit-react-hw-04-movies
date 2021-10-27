@@ -1,0 +1,26 @@
+.container {
+  padding: 20px;
+  border-bottom: 0px solid black;
+  box-shadow: 0px 1px 13px rgb(0 0 0 / 2%), 0px 1px 1px rgb(0 0 0 / 4%),
+    0px 2px 11px rgb(0 0 0 / 20%);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+}
+
+.item {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.activeItem {
+  color: #ed3a3a;
+}
+
+.item:not(:last-child) {
+  margin-right: 20px;
+}
