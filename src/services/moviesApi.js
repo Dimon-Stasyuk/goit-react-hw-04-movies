@@ -5,11 +5,10 @@ axios.defaults.params = {
   api_key: "8ed7f54d2991fc05fca415d613a37f57",
 };
 
-const fetchTrendingMovies = () => {
-  return axios
-    .get("/trending/all/week")
-    .then(({ data: { results } }) => results);
-};
+async function fetchTrendingMovies() {
+  const resp = await axios.get(`/trending/movie/week?`);
+  return resp.data.results;
+}
 
 const fetchCast = (movieId) => {
   return axios
