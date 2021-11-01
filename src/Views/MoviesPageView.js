@@ -4,7 +4,7 @@ import { useRouteMatch, useLocation } from "react-router";
 import defaultImg from "../images/default_img.jpg";
 
 export default function MoviesPageView({ searcMovies }) {
-  const { url } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   const location = useLocation();
 
@@ -16,7 +16,7 @@ export default function MoviesPageView({ searcMovies }) {
             <li key={movie.id} className={s.item}>
               <Link
                 to={{
-                  pathname: `${url}/${movie.id}`,
+                  pathname: `${path}/${movie.id}`,
                   state: { from: location },
                 }}>
                 {movie.backdrop_path ? (
