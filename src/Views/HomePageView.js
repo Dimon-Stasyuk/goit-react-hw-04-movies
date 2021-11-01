@@ -14,7 +14,12 @@ export default function HomePageView({ movies }) {
               <Link
                 to={{
                   pathname: `movies/${movie.id}`,
-                  state: { from: location },
+                  state: {
+                    from:
+                      location.pathname === "/"
+                        ? "/"
+                        : "/movies" + location.search,
+                  },
                 }}
                 className={s.link}>
                 <img
