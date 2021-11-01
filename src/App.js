@@ -33,7 +33,7 @@ function App() {
             <MovieDetailsPage />
           </Route>
 
-          <Route>
+          <Route path='/'>
             <HomePage />
           </Route>
         </Switch>
