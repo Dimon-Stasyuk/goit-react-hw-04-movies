@@ -5,6 +5,7 @@ import {
   useRouteMatch,
   useLocation,
   useHistory,
+  Switch,
 } from "react-router";
 import { NavLink } from "react-router-dom";
 import s from "./MovieDetailsPage.module.css";
@@ -18,7 +19,7 @@ export default function MovieDetailsPage() {
   const [movieDetails, setMovieDetails] = useState(null);
   const [error, setError] = useState(false);
   const { movieId } = useParams(null);
-  const { url } = useRouteMatch();
+  const { path, url } = useRouteMatch();
 
   const location = useLocation();
   const history = useHistory();
@@ -34,11 +35,9 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   const onGoBack = () => {
-    if (location && location.state && location.state.from) {
+    if (location.state?.from) {
       history.push(location.state.from);
-      return;
     }
-    history.push("/");
   };
 
   return (
@@ -53,12 +52,14 @@ export default function MovieDetailsPage() {
           <p>Additional information</p>
           <ul className={s.list}>
             <li className={s.item}>
-              <NavLink to={`${url}/cast`} location={location}>
+              <NavLink
+                to={{ pathname: `${url}/cast`, state: location.state }}
+                location={location}>
                 Cast
               </NavLink>
             </li>
             <li className={s.item}>
-              <NavLink to={`${url}/reviews`} location={location}>
+              <NavLink to={{ pathname: `${url}/reviews` }} location={location}>
                 Reviews
               </NavLink>
             </li>
@@ -70,13 +71,15 @@ export default function MovieDetailsPage() {
         <ErrorView />
       )}
 
-      <Route path={`${url}/cast`}>
-        <Cast movieId={movieId} />
-      </Route>
+      <Switch>
+        <Route path={`${path}/cast`} exact>
+          <Cast movieId={movieId} />
+        </Route>
 
-      <Route path={`${url}/reviews`}>
-        <Reviews movieId={movieId} />
-      </Route>
+        <Route path={`${path}/reviews`}>
+          <Reviews movieId={movieId} />
+        </Route>
+      </Switch>
     </>
   );
 }
