@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import defaultAvatar from "../images/default_avatar.jpg";
 import fetchMovies from "../services/moviesApi";
-import { useLocation } from "react-router";
+
 import s from "./Cast.module.css";
 
 export default function Cast({ movieId }) {
   const [casts, setCasts] = useState(null);
-  const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     fetchMovies.fetchCast(movieId).then(setCasts);
