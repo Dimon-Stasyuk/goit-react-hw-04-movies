@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import s from "../HomePage/HomePage.module.css";
 import { useLocation } from "react-router";
 
-export default function HomePageView({ movies, backdrop_path }) {
+export default function HomePageView({ movies }) {
   const location = useLocation();
 
   return (
