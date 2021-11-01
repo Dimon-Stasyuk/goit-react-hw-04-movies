@@ -5,11 +5,11 @@ import { useLocation, useHistory } from "react-router";
 import s from "./MoviesPage.module.css";
 
 export default function MoviesPage() {
-  const [movies, setMovies] = useState(null);
   const location = useLocation();
-  const [name, setName] = useState(
-    new URLSearchParams(location.search).get("query") ?? "",
-  );
+
+  const [movies, setMovies] = useState(null);
+  const [name, setName] = useState("");
+  const searchName = new URLSearchParams(location.search).get("query");
 
   const history = useHistory();
 
@@ -23,18 +23,17 @@ export default function MoviesPage() {
   };
 
   useEffect(() => {
-    if (location.search === "") {
-      return;
+    if (searchName) {
+      onFetch(searchName);
+      setName(searchName);
     }
-    onFetch(name);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (name.trim() === "") {
-      return;
-    }
+
     onFetch(name);
     history.push({
       ...location,
