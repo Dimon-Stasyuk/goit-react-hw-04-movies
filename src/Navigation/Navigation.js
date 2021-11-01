@@ -7,8 +7,8 @@ export default function Navigation() {
       <nav className={s.container}>
         <ul className={s.list}>
           <NavLink
-            exact
             to='/'
+            exact
             className={s.item}
             activeClassName={s.activeItem}>
             Home
