@@ -4,7 +4,7 @@ import s from "./Navigation.module.css";
 export default function Navigation() {
   return (
     <header>
-      <div className={s.container}>
+      <nav className={s.container}>
         <ul className={s.list}>
           <NavLink
             exact
@@ -20,7 +20,7 @@ export default function Navigation() {
             Movies
           </NavLink>
         </ul>
-      </div>
+      </nav>
     </header>
   );
 }
